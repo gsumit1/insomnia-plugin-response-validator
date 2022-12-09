@@ -12,15 +12,18 @@ Add a header `INSOMNIA-RESPONSE-VALIDATOR` with a json comparising of jsonpath a
 
 ## Setup the Header 
 
-<img width="932" alt="HeaderSetUp" src="https://user-images.githubusercontent.com/17493208/206232231-7af452cb-c68e-4301-8490-59df5a799f2e.png">
+<img width="1286" alt="image" src="https://user-images.githubusercontent.com/17493208/206656464-1e8d308e-ab58-490c-9f26-5fad64d5a064.png">
 
 ## Validator
 
 Key: JSONPATH
 Value: Expected Value
 
+Note: To validate the response code of the request add ``"INSA-ResponseCode":"200"``. 
+
 ``
 {
+"INSA-ResponseCode":"200",
 "$.status" : "success", 
 "$.data[10].employee_name" : "Jena Gaines"
 }
