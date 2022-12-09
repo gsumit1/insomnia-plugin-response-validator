@@ -31,8 +31,8 @@ Note: To validate the response code of the request add ``"INSA-ResponseCode":"20
 
 ## Test Execution Result
 
-Test Execution result will be appended at the bottom of the response as follows
-<img width="586" alt="ExecutionResult" src="https://user-images.githubusercontent.com/17493208/206233900-478a69d6-9b98-4af5-aef0-8945cc7de6ad.png">
+Test Execution result will be appended at the top of the response as follows
+<img width="514" alt="image" src="https://user-images.githubusercontent.com/17493208/206657016-5a42f04f-d8bf-4c18-94b6-576ec3055581.png">
 
 ## More info for Debug
 View-->Toggle DevTools-->Console
