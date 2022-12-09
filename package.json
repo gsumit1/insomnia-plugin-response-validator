@@ -6,19 +6,29 @@
   "license": "MIT",
   "insomnia": {
     "name": "response-validator",
-    "description": "testing of response"
+    "displayName": "Response Validator - Unit Test Plugin",
+    "description": "A plugin to perform validation on the response",
+    "images": {
+      "icon": "qaworld.svg",
+      "cover": "qaworld.svg"
+    },
+    "publisher": {
+      "name": "Sumit Ghosh",
+      "icon": "https://avatars.githubusercontent.com/u/17493208"
+    }
   },
   "main": "main.js",
   "dependencies": {
     "jsonpath": "^1.1.1"
   },
-  "description": "Testing of response",
+  "description": "A plugin to perform validation on the response",
   "keywords": [
     "insomnia",
     "plugin",
     "response",
-    "parse",
-    "json"
+    "test response",
+    "json",
+    "json validator"
   ],
   "devDependencies": {},
   "repository": {
