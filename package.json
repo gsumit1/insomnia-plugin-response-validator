@@ -1,7 +1,7 @@
 {
   "name": "insomnia-plugin-response-validator",
   "author": "Sumit Ghosh<qaworld.sumit@gmail.com>",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "private": false,
   "license": "MIT",
   "insomnia": {
@@ -9,8 +9,8 @@
     "displayName": "Response Validator - Unit Test Plugin",
     "description": "A plugin to perform validation on the response",
     "images": {
-      "icon": "qaworld.svg",
-      "cover": "qaworld.svg"
+      "icon": "QAWorld.svg",
+      "cover": "QAWorld.svg"
     },
     "publisher": {
       "name": "Sumit Ghosh",
