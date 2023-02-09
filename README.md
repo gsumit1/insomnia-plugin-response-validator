@@ -21,13 +21,32 @@ Value: Expected Value
 
 Note: To validate the response code of the request add ``"INSA-ResponseCode":"200"``. 
 
-``
+```json
 {
 "INSA-ResponseCode":"200",
 "$.status" : "success", 
 "$.data[10].employee_name" : "Jena Gaines"
 }
-``
+```
+
+Note: To validate the a fixed set of values like:
+```json
+{
+"$.status" : ["valid","success","ok"],
+}
+```
+It will check if $.status is in "success" or "ok".
+> The first index needs to start with 'valid'
+
+Note: To validate the interval value like:
+
+```json
+{
+"$.code":["range",200,300]
+}
+```
+It will check if $.code is in the range of 200 to 300, containing 200 and 300 boundary values.
+> The first index needs to start with 'range' and the range must have 2 values, sorted from smallest to largest.
 
 ## Test Execution Result
 

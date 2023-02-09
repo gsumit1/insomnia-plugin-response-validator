@@ -57,9 +57,6 @@ module.exports.responseHooks = [
                                         if (item === 'valid') {
                                             continue;
                                         }
-                                        console.log(JSON.parse(item))
-                                        console.log(typeof item)
-                                        console.log(actualValues[0])
                                         if (item == actualValues) {
                                             console.log("PASS")
                                             console.log("Expected Value: " + item);
