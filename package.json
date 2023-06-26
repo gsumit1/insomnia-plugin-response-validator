@@ -1,7 +1,7 @@
 {
   "name": "insomnia-plugin-response-validator",
   "author": "Sumit Ghosh<qaworld.sumit@gmail.com>",
-  "version": "1.0.2",
+  "version": "2.0.0",
   "private": false,
   "license": "MIT",
   "insomnia": {
