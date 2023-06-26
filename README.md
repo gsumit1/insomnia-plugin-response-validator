@@ -24,6 +24,8 @@ Note: To validate the response code of the request add ``"INSA-ResponseCode":"20
 The plugin is integrated with Hamjest now, providing significant matcher functionality.
 Since JSONPATH outputs arrays, we must use array-related matchers since we are using JSONPATH. Some of the examples are as follows.
 
+All `hamjest` to be available as `__`.
+
 hasItems
     "$.data[*].id" : "__.hasItem(7)"
     "$.data[*].id" : "__.hasItem(__.greaterThan(8))"
