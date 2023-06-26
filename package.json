@@ -9,8 +9,8 @@
     "displayName": "Response Validator - Unit Test Plugin",
     "description": "A plugin to perform validation on the response",
     "images": {
-      "icon": "qaworld.svg",
-      "cover": "qaworld.svg"
+      "icon": "QAWorld.svg",
+      "cover": "QAWorld.svg"
     },
     "publisher": {
       "name": "Sumit Ghosh",
