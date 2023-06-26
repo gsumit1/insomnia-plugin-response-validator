@@ -21,6 +21,43 @@ Value: Expected Value
 
 Note: To validate the response code of the request add ``"INSA-ResponseCode":"200"``. 
 
+The plugin is integrated with Hamjest now, providing significant matcher functionality.
+Since JSONPATH outputs arrays, we must use array-related matchers since we are using JSONPATH. Some of the examples are as follows.
+
+hasItems
+    "$.data[*].id" : "__.hasItem(7)"
+    "$.data[*].id" : "__.hasItem(__.greaterThan(8))"
+    "$.data[*].id" : "__.hasItem(__.lessThan(3))"
+
+hasSize()
+    "$.data[*].employee_name" : "__.hasSize(5)"
+    "$.data[*].employee_name" : "__.hasSize(__.lessThan(3))"
+    "$.data[*].employee_name" : "__.hasSize(__.greaterThan(8))"
+isEmpty()
+    "$.data[*].employee_name" : "__.isEmpty()"
+
+contains
+    "$.data[*].id" : "__.contains(5, 7, 10)"
+
+hasProperty
+    "$.data[0]":"__.hasItems(__.hasProperties({'id': 7,'email': 'michael.lawson@reqres.in','first_name': 'Michael','last_name': 'Lawson','avatar':'https://reqres.in/img/faces/7-image.jpg'}))"
+
+Refer https://github.com/rluba/hamjest/wiki/Matcher-documentation for more details on matchers    
+
+``
+INSOMNIA-RESPONSE-VALIDATOR:
+{
+"INSA-ResponseCode":"200",
+"$.page":"__.hasItems(2)",
+"$.total_pages":"__.hasItems(__.lessThan(4))"
+"$.status" :"__.hasItem('success')", 
+"$.data[0].first_name":"__.hasItems('Michael')"
+"$.data[10].avatar" :"__.hasItems('https://reqres.in/img/faces/9-image.jpg')"
+}
+``
+Note: use single quote as shown above for string
+
+Old Header 
 ``
 {
 "INSA-ResponseCode":"200",
@@ -28,6 +65,15 @@ Note: To validate the response code of the request add ``"INSA-ResponseCode":"20
 "$.data[10].employee_name" : "Jena Gaines"
 }
 ``
+New Header
+``
+{
+"INSA-ResponseCode":"200",
+"$.status" : "__.hasItem('success')",  
+"$.data[10].employee_name" : "__.hasItem('Jena Gaines')",
+}
+``
+
 
 ## Test Execution Result
 

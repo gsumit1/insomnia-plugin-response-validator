@@ -1,58 +1,55 @@
 var jp = require("jsonpath");
+const __ = require('hamjest');
 module.exports.responseHooks = [
     (context) => {
         const jsonPath = context.request.getHeader("INSOMNIA-RESPONSE-VALIDATOR");
-        var flag = 0;
+        var flag=0;
         let errors = 0;
         if (jsonPath) {
             let response = {};
             try {
                 actualStatusCode = context.response.getStatusCode();
-                response = JSON.parse(context.response.getBody().toString());
-                jsonObject = JSON.parse(jsonPath.toString());
+                response = JSON.parse(context.response.getBody().toString());                
             } catch (error) {
-                console.error("Error parsing response body", error);
-                return;
-            } finally {
-                console.log("********** Test Execution Started **************")
+                console.error("Error in the response body", error);
+                context.response.setBody(Buffer.from("{\n\"Error in the response. Refer Console for details\"\,\n" + JSON.stringify(response).slice(1)));
+                return
+            } 
 
-                Object.keys(jsonObject).forEach(key => {
-
-                    try {
-                        if (key == "INSA-ResponseCode") {
-                            if (jsonObject[key] != actualStatusCode) {
-                                console.log("FAIL");
-                                console.log("Status Code validation failed. The expected status code " + jsonObject[key] + " but the actual status code " + actualStatusCode);
-                                flag = 1;
-                            }
-                        } else {
-                            console.log("Test For JSONPATH :" + key); // keys
-                            var actualValues = jp.query(response, key)
-                            if (jsonObject[key] == actualValues) {
-                                console.log("PASS")
-                                console.log("Expected Value: " + jsonObject[key]);
-                                console.log("Actual Value: " + actualValues);
-                            } else {
-                                console.log("FAIL")
-                                console.log("Expected Value: " + jsonObject[key]);
-                                console.log("Actual Value: " + actualValues);
-                                flag = 1;
-                            }
-                        }
-                    } catch (error) {
-                        errors++;
-                        console.error("Either JSONPATH or Key has issue" + "\n" +error);
-                    }
-                })
-
+            try {
+                jsonObject = JSON.parse(jsonPath.toString());
+            } catch(error){
+                console.error("Error in INSOMNIA-RESPONSE-VALIDATOR header or in parsing the header", error);
+                context.response.setBody(Buffer.from("{\n\"Error in INSOMNIA-RESPONSE-VALIDATOR header. Refer Console for details\"\,\n" + JSON.stringify(response).slice(1)));
+                return
             }
-            if (errors == 0 && flag == 0) {
+            
+            console.log("********** Test Execution Started **************")
+            Object.keys(jsonObject).forEach(key => {
+                try {
+                    if (key == "INSA-ResponseCode") {
+                        __.assertThat("Status Code validation failed. The expected status code " + jsonObject[key] + " but the actual status code " + actualStatusCode, actualStatusCode, __.is(parseInt(jsonObject[key])));
+                    } else {
+                        var actualValues = jp.query(response, key)
+                        if (typeof jsonObject[key] === 'string' || jsonObject[key] instanceof String) {               
+                            __.assertThat(actualValues, eval(jsonObject[key]))
+                        }
+                    }                
+                    console.log("Test For JSONPATH :" + key + ": Passed");
+                } catch (error) {
+                    errors++;
+                    console.error("Either JSONPATH or Key has issue" + "\n" + error);
+                }
+            })
+            
+            if (errors == 0 ) {
                 context.response.setBody(Buffer.from("{\n\"INSOMNIA-RESPONSE-TEST-EXECUTION-RESULT\":\"PASS\",\n" + JSON.stringify(response).slice(1)));
+                console.log("Assertion Passed");
             } else {
                 context.response.setBody(Buffer.from("{\n\"INSOMNIA-RESPONSE-TEST-EXECUTION-RESULT\":\"FAIL\",\n" + JSON.stringify(response).slice(1)));
-                console.error("Assertion Failed");
-                flag = 0;
+                console.error("Assertion Failed");  
             }
         }
     },
 ];
+
