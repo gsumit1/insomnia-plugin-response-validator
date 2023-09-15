@@ -95,3 +95,5 @@ Test Execution result will be appended at the top of the response as follows
 View-->Toggle DevTools-->Console
 
 <img width="581" alt="consoleResult" src="https://user-images.githubusercontent.com/17493208/206235287-5188c23b-c622-45d5-9600-ae0f75769407.png">
+
+### You need to have NodeJS installed in your system to use this plugin 
