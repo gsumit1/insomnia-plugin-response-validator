@@ -77,6 +77,7 @@ module.exports.requestGroupActions = [
 
             for (const request of requests) {
                 let temp = [];
+                temp.push(request.method)
                 temp.push(request.name);
                 try {
                     let requestHeader = request.headers.filter(header => header.name === "INSOMNIA-RESPONSE-VALIDATOR");
@@ -96,9 +97,9 @@ module.exports.requestGroupActions = [
                     try {
                         reqDetails = map.get(entireResponse.parentId);
                     } catch (error) { }
-
-                    let reqName = reqDetails[0];
-                    let jsonPath = reqDetails[1];
+                    let reqMethod = reqDetails[0];
+                    let reqName = reqDetails[1];
+                    let jsonPath = reqDetails[2];
                     let errors = 0;
 
 
@@ -145,19 +146,19 @@ module.exports.requestGroupActions = [
                         })
 
                         if (errors == 0) {
-                            results.push(`<tr><td>${reqName}</td><td>Passed</td></tr>`);
+                            results.push(`<tr><td>${reqMethod} : ${reqName}</td><td>Passed</td></tr>`);
                             console.log("Assertion Passed");
                         } else if (errors > 0) {
-                            results.push(`<tr><td>${reqName}</td><td>Failed</td></tr>`);
+                            results.push(`<tr><td>${reqMethod} : ${reqName}</td><td>Failed</td></tr>`);
                             console.error("Assertion Failed");
                         } else if (errors === NaN) {
-                            results.push(`<tr><td">${reqName}</td><td>Timeout or error</td></tr>`);
+                            results.push(`<tr><td">${reqMethod} : ${reqName}</td><td>Timeout or error</td></tr>`);
                             console.log("Assertion Unknown");
                         }
 
                     } else {
-                        if (entireResponse.statusCode > 0) { results.push(`<tr><td>${reqName}</td><td>Status - ${entireResponse.statusCode} ${entireResponse.statusMessage}</td></tr>`) }
-                        else { results.push(`<tr><td>${reqName}</td><td>Timeout or Error </td></tr>`) }
+                        if (entireResponse.statusCode > 0) { results.push(`<tr><td>${reqMethod} : ${reqName}</td><td>Status - ${entireResponse.statusCode} ${entireResponse.statusMessage}</td></tr>`) }
+                        else { results.push(`<tr><td>${reqMethod} : ${reqName}</td><td>Timeout or Error </td></tr>`) }
                     }
 
                 }
