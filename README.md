@@ -101,7 +101,7 @@ Right click on the target folder on the context menu --> click Run All Requests 
 
 Once all the requests processed, it will open up the execution dialog window which will give the execution result.
 
-<img width="1556" alt="image" src="https://github.com/gsumit1/insomnia-plugin-response-validator/assets/17493208/6671b637-d011-4515-b818-6d281850c4ca">
+<img width="1549" alt="image" src="https://github.com/gsumit1/insomnia-plugin-response-validator/assets/17493208/2f69deef-3060-4a3e-beef-27758a63e62c">
 
 During execution, it will evalutes the assert that setup as header against the response, based upon the assert, it will pass or fail the result. 
 If no assert setup, then it will simply return status code.   
