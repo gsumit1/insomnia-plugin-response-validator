@@ -95,13 +95,15 @@ View-->Toggle DevTools-->Console
 
 ## Run All Requests
 
-Right click on the target folder, on the context menu click --> Run All Requests it will trigger all requests.
+Right click on the target folder on the context menu --> click Run All Requests it will trigger all requests.
 
-<img width="581" alt="Run All Requests" src="https://github.com/gsumit1/insomnia-plugin-response-validator/assets/17493208/28e61740-260c-4af8-8f3f-45e4abfaa48a">
+<img width="581" alt="Run All Requests" src="https://github.com/gsumit1/insomnia-plugin-response-validator/assets/17493208/67130fad-526e-4f5a-91c7-284911ed95d4">
 
 Once all the requests processed, it will open up the execution dialog window which will give the execution result.
 
 <img width="1556" alt="image" src="https://github.com/gsumit1/insomnia-plugin-response-validator/assets/17493208/6671b637-d011-4515-b818-6d281850c4ca">
 
+During execution, it will evalutes the assert that setup as header against the response, based upon the assert, it will pass or fail the result. 
+If no assert setup, then it will simply return status code.   
 
 ### You need to have NodeJS installed in your system to use this plugin
