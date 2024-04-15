@@ -104,6 +104,13 @@ Once all the requests processed, it will open up the execution dialog window whi
 <img width="1549" alt="image" src="https://github.com/gsumit1/insomnia-plugin-response-validator/assets/17493208/2f69deef-3060-4a3e-beef-27758a63e62c">
 
 During execution, it will evalutes the assert that setup as header against the response, based upon the assert, it will pass or fail the result. 
-If no assert setup, then it will simply return status code.   
+In the absence of an assert setup, a status code will be returned.  
+
+Before running all request, setup the Request timeout to desired value otherwise requets will continue run, till timeout.
+
+Insomania-->Settings...-->Insomania Preferences
+
+<img width="1489" alt="image" src="https://github.com/gsumit1/insomnia-plugin-response-validator/assets/17493208/75f883f0-21e3-461c-91a1-3444d44cfb0c">
+
 
 ### You need to have NodeJS installed in your system to use this plugin
