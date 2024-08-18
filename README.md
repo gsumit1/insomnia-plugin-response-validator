@@ -71,13 +71,13 @@ Refer https://github.com/rluba/hamjest/wiki/Matcher-documentation for more detai
 
 ### Old Header Format (No longer supported)
 
-`{"INSA-ResponseCode":"200",
+`INSOMNIA-RESPONSE-VALIDATOR:{"INSA-ResponseCode":"200",
 "$.status" : "success",
 "$.data[10].employee_name" : "Jena Gaines"}`
 
 ### New Header
 
-`
+`INSOMNIA-RESPONSE-VALIDATOR:
 {"INSA-ResponseCode":"200",
 "$.status" : "__.hasItem('success')",  
 "$.data[10].employee_name" : "__.hasItem('Jena Gaines')"}`
@@ -93,11 +93,14 @@ View-->Toggle DevTools-->Console
 
 <img width="581" alt="consoleResult" src="https://user-images.githubusercontent.com/17493208/206235287-5188c23b-c622-45d5-9600-ae0f75769407.png">
 
-## Run All Requests
+## Run All Requests: Parallel or Sequential
 
-Right click on the target folder on the context menu --> click Run All Requests it will trigger all requests.
+Right click on the target folder on the context menu --> click Run All Requests-Parallel, it will trigger all requests in parallel.
 
-<img width="581" alt="Run All Requests" src="https://github.com/gsumit1/insomnia-plugin-response-validator/assets/17493208/67130fad-526e-4f5a-91c7-284911ed95d4">
+<img width="581" alt="Run All Requests" src="https://github.com/user-attachments/assets/0db74d69-6505-4587-a562-de2dcf773b8d">
+
+Right click on the target folder on the context menu --> click Run All Requests-Sequential, it will trigger requests present in the folder sequentially. 
+It's beneficial when requests have interconnected dependencies.
 
 Once all the requests processed, it will open up the execution dialog window which will give the execution result.
 
